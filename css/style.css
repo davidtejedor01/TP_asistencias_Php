@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9ecef;
+    /* Un fondo gris claro */
+    display: flex;
+    /* Centra el contenido */
+    justify-content: center;
+    align-items: flex-start;
+    /* Alinea al inicio de la página */
+    padding-top: 50px;
+    margin: 0;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    color: #343a40;
+    /* Un gris oscuro */
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+h2 {
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #495057;
+    font-weight: bold;
+}
+
+input[type="date"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.alumnos-list {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.alumno-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #e9ecef;
+}
+
+.alumno-item:last-child {
+    border-bottom: none;
+}
+
+.alumno-info {
+    color: #212529;
+}
+
+input[type="checkbox"] {
+    margin-left: 10px;
+    cursor: pointer;
+    transform: scale(1.2);
+    /* Hace el checkbox un poco más grande */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.success {
+    color: #198754;
+    /* Un verde de éxito */
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #d1e7dd;
+    /* Fondo verde claro */
+    border-radius: 5px;
+}
+
+.btn-secundario {
+    background-color: #757e85;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secundario:hover {
+    background-color: #5a6268;
+}
