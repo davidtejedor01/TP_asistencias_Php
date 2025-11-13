@@ -1,37 +1,39 @@
 <?php
 require_once('funciones.php');
+require_once('conexion.php');
 
-// Validar que llegó la fecha
 if (!isset($_POST['fecha']) || empty($_POST['fecha'])) {
     die("Error: La fecha es obligatoria");
 }
 
-$fecha = $_POST['fecha']; // ejemplo: "2025-09-18"
-$alumnos = leerAlumnos(); // traigo lista de alumnos
-$presentes = $_POST['asistencia'] ?? []; // ejemplo: ['1001' => 'P', '1003' => 'P']
+//Capturamos los datos del formulario
+$fecha = $_POST['fecha'];
+$presentes = $_POST['asistencia'] ?? [];
 
-// Construyo las líneas del archivo
-$lineas = [];
+// Traemos todos los alumnos
+$alumnos = leerAlumnos();
+
 foreach ($alumnos as $alumno) {
     $matricula = $alumno['matricula'];
+    $estado = isset($presentes[$matricula]) ? 'P' : 'A';
 
-    // Si vino marcado en el form → "P", si no → "A"
-    $estado = isset($presentes[$matricula]) ? "P" : "A";
+    // Busco el id del alumno
+    $sqlAlumno = "SELECT id FROM alumnos WHERE matricula = ?";
+    $stmt = $conn->prepare($sqlAlumno);
+    $stmt->bind_param("i", $matricula);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
 
-    // Ejemplo: "1001,P"
-    $lineas[] = "{$matricula},{$estado}";
+    if ($fila = $resultado->fetch_assoc()) {
+        $alumno_id = $fila['id'];
+
+        // Inserto asistencia
+        $sqlInsert = "INSERT INTO asistencias (alumno_id, fecha, estado) VALUES (?, ?, ?)";
+        $stmt2 = $conn->prepare($sqlInsert);
+        $stmt2->bind_param("iss", $alumno_id, $fecha, $estado);
+        $stmt2->execute();
+    }
 }
-
-// Creo el archivo dentro de /Archivos con nombre = fecha
-$ruta = __DIR__ . '/../Archivos/' . $fecha . '.txt';
-
-// file_put_contents escribe strings en un archivo. 'implode()' convierte el array en string
-file_put_contents($ruta, implode("\n", $lineas));
-
-// Mensaje de confirmación
-echo "Asistencia guardada en Archivos/$fecha.txt";
-echo "<br><a href='../Asistencia.php'>Volver</a>";
 
 header("Location: ../Asistencia.php?msg=guardado");
 exit;
-

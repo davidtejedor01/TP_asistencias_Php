@@ -1,0 +1,8 @@
+USE asistencia_db;
+
+INSERT INTO alumnos (matricula, nombre, apellido) VALUES
+(1001, 'Juan', 'Pérez'),
+(1002, 'Ana', 'López'),
+(1003, 'María', 'García'),
+(1004, 'Lucas', 'Ramos'),
+(1005, 'Alejandro', 'Luna');
