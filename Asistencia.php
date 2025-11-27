@@ -21,7 +21,7 @@ $alumnos = leerAlumnos();
             <p class="success">Asistencia guardada correctamente ✅</p>
         <?php endif; ?>
 
-        <form action="php/GeneraArchivo.php" method="post">
+        <form action="php/ProcesarDatos.php" method="post">
             <div class="form-group">
                 <label for="fecha">Fecha:</label>
                 <input type="date" id="fecha" name="fecha" required>
